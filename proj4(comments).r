@@ -10,9 +10,6 @@
 # line-by-line comments will above the corresponding code (using two: ## )
 # Multiple lines of comments may be use for explanation
 #
-
-newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
-{
 ## Overview:
 ## Function 'newt' is a function which implements Newton's method to a given function
 ## with its gradient, Hessian, function and derivatives. 'newt' also
@@ -41,9 +38,8 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
 ## g: the gradient vector at the minimum
 ## Hi: the inverse of the Hessian matrix at the minimum
 
-
-
-
+newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
+{
   dim=length(theta) # gets the number of parameters
   iter=1 # intiliases the interations to 1
   # while interations are less then the user defined maximum, perform newton opti
