@@ -12,6 +12,7 @@
 #
 
 newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
+{
 ## Overview:
 ## Function 'newt' is a function which implements Newton's method to a given function
 ## with its gradient, Hessian, function and derivatives. 'newt' also
@@ -42,7 +43,7 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
 
 
 
-{
+
   dim=length(theta) # gets the number of parameters
   iter=1 # intiliases the interations to 1
   # while interations are less then the user defined maximum, perform newton opti
@@ -88,7 +89,7 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
     # checks each value against the given tolerance 
     if (all(abs(grad_val)<tol*(abs(func_val0)+fscale)))
     {
-      if (any(diag_elements<=0)) #  the hessain ins't postive definite
+      if (any(diag_elements<=0)) #  the hessain isn't postive definite
       {
         stop('failed to converge') # print error message as it can't be a minimum
         # maybe just a saddle etc etc
