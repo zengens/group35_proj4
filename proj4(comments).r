@@ -2,7 +2,6 @@
 # Group 35: 
 # Henry Blackwell (s2451994) , Peijie Zeng (s2332799) , Jing Pan (s2312688)
 # https://github.com/zengens/group35_proj4
-# Peijie Zeng: 
 # Henry Blackwell: comments and pusedocode/logic, help coding with finite 
 #                 difference method
 # Peijie Zeng: Main structure of the function, iteration algorithm 
