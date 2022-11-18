@@ -2,7 +2,9 @@
 # Group 35: 
 # Henry Blackwell (s2451994) comments and pusedocode/logic, Peijie Zeng (s2332799) , Jing Pan (s2312688)
 # https://github.com/zengens/group35_proj4
-# Peijie Zeng: 
+# Henry Blackwell: comments and pusedocode/logic, 
+#                  part codes of finite difference approximation 
+# Peijie Zeng: Main structure of the function, Newton iteration algorithm 
 #
 # Jing Pan: Code part is for judging whether the step △ is too large and overshot to increase D 
 #           so as to keep haling to make sure D is the local minimum.
