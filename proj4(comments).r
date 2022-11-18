@@ -1,16 +1,14 @@
 # Statistical Programming group project 4 code 
 # Group 35: 
-# Henry Blackwell (s2451994) comments and pusedocode/logic, Peijie Zeng (s2332799) , Jing Pan (s2312688)
+# Henry Blackwell (s2451994) , Peijie Zeng (s2332799) , Jing Pan (s2312688)
 # https://github.com/zengens/group35_proj4
-# Henry Blackwell: comments and pusedocode/logic, 
-#                  part codes of finite difference approximation 
-# Peijie Zeng: Main structure of the function, Newton iteration algorithm 
-#
+# Peijie Zeng: 
+# Henry Blackwell: comments and pusedocode/logic, help coding with finite 
+#                  difference method
+# Peijie Zeng: Main structure of the function, iteration algorithm 
 # Jing Pan: Code part is for judging whether the step △ is too large and overshot to increase D 
 #           so as to keep haling to make sure D is the local minimum.
 #           Check the conditon criterions and examine the boundaries. 
-
-
 # READ ME: 
 # For function description, outline and overview (using one: #)
 # line-by-line comments will above the corresponding code (using two: ## )
@@ -45,6 +43,7 @@
 ## Hi: the inverse of the Hessian matrix at the minimum
 
 newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
+  
 {
   dim=length(theta) # gets the number of parameters
   iter=1 # intiliases the interations to 1
@@ -62,8 +61,8 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
     {
       hess_val=matrix(0,dim,dim) 
       for (i in 1:dim) # these loops are to go over and "calulate the partials for each 
-                       # parameter in theta, i loops over row and j over columns
-                       #  only calulate the upper triangler, as it's more effecient
+        # parameter in theta, i loops over row and j over columns
+        #  only calulate the upper triangler, as it's more effecient
       {
         for (j in i:dim)
         {
@@ -77,9 +76,13 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
           grad_mj=grad(theta-ej*eps,...)
           # the main equation for calulating the hessian at each position 
           hess_val[i,j]=(grad_pi[j]-grad_mi[j]+grad_pj[i]-grad_mj[i])/(4*eps)
+          if (j==i)
+          {
+            hess_val[i,j]=hess_val[i,j]/2
+          }
         }
       }
-      hess_val=(hess_val+t(hess_val))/2 # makes sure it's symmetric   
+      hess_val=hess_val+t(hess_val) # makes sure it's symmetric   
     }
     else # if we are given the hessian then just use that obvoiusly 
     {
@@ -91,7 +94,7 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
     # checks each value against the given tolerance 
     if (all(abs(grad_val)<tol*(abs(func_val0)+fscale)))
     {
-      if (any(diag_elements<=0)) #  the hessain isn't postive definite
+      if (any(diag_elements<=0)) #  the hessain ins't postive definite
       {
         stop('failed to converge') # print error message as it can't be a minimum
         # maybe just a saddle etc etc
@@ -153,3 +156,4 @@ newt=function(theta,func,grad,hess,...,tol,fscale,maxit,max.half,eps)
               Hi=chol2inv(chol(hess_val)))
   return(result)
 }
+
